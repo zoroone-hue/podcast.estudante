@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mente Do Estudante — Podcast sobre Escola</title>
+
+    <meta
+        name="description"
+        content="Um podcast sobre escola, tecnologia, trabalho, cultura e aquilo que não cabe em um algoritmo."
+    >
+
+    <style>
+        /* =========================================================
+           CONFIGURAÇÕES GERAIS
+        ========================================================= */
+
+        :root {
+            --fundo: #f4f0e7;
+            --papel: #faf8f2;
+            --preto: #171717;
+            --cinza: #656565;
+            --amarelo: #beaee4;
+            --verde: #8c77bd;
+            --azul: #542d92;
+            --laranja: #513e96;
+            --borda: #c9c4b9;
+            --branco: #ffffff;
+
+            --largura: 1200px;
+            --raio: 4px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background: var(--fundo);
+            color: var(--preto);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(92%, var(--largura));
+            margin: 0 auto;
+        }
+
+
+        /* =========================================================
+           CABEÇALHO
+        ========================================================= */
+
+        header {
+            background: var(--papel);
+            border-bottom: 1px solid var(--borda);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            min-height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: Arial, sans-serif;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--preto);
+            color: var(--branco);
+            display: grid;
+            place-items: center;
+            font-size: 25px;
+            border-radius: 50%;
+        }
+
+        .logo-text strong {
+            display: block;
+            font-size: 20px;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .logo-text span {
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 0;
+            height: 3px;
+            background: var(--amarelo);
+            transition: .25s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-button {
+            display: none;
+            border: 0;
+            background: transparent;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            min-height: 650px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+            padding: 80px 0;
+        }
+
+        .hero-label {
+            color: var(--azul);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 6vw, 82px);
+            line-height: .95;
+            letter-spacing: -4px;
+            max-width: 650px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 span {
+            background: var(--amarelo);
+            padding: 0 8px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 570px;
+            color: #3f3f3f;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border: 1px solid var(--preto);
+            background: var(--preto);
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .button.secondary {
+            background: transparent;
+            color: var(--preto);
+        }
+
+        .hero-art {
+            min-height: 460px;
+            background:
+                linear-gradient(135deg, transparent 20%, var(--amarelo) 20%, var(--amarelo) 65%, transparent 65%),
+                var(--papel);
+            border: 1px solid var(--borda);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .art-card {
+            position: relative;
+            z-index: 2;
+            width: 250px;
+            height: 330px;
+            background: #222;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            box-shadow: 15px 15px 0 rgba(0,0,0,.15);
+        }
+
+
+        /* =========================================================
+           EPISÓDIO DESTAQUE
+        ========================================================= */
+
+        .featured {
+            background: var(--preto);
+            color: white;
+            padding: 85px 0;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1.2fr .8fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            color: var(--amarelo);
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .featured h2 {
+            font-size: clamp(38px, 5vw, 65px);
+            line-height: 1;
+            letter-spacing: -3px;
+            margin-bottom: 25px;
+        }
+
+        .featured p {
+            color: #d0d0d0;
+            font-size: 18px;
+            max-width: 650px;
+            margin-bottom: 25px;
+        }
+
+        .episode-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            color: #bbb;
+            margin-bottom: 30px;
+        }
+
+        .episode-cover {
+            min-height: 370px;
+            background:
+                radial-gradient(circle at 50% 40%, #6248ac 0 8%, transparent 8.5%),
+                linear-gradient(135deg, #1c1c1c 0 50%, #6248ac 50%);
+            display: grid;
+            place-items: center;
+            border: 1px solid #444;
+        }
+
+        .episode-cover span {
+            font-family: Arial, sans-serif;
+            font-size: 120px;
+            font-weight: 900;
+            color: rgba(0,0,0,.75);
+        }
+
+
+        /* =========================================================
+           EPISÓDIOS
+        ========================================================= */
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 30px;
+            margin-bottom: 45px;
+        }
+
+        .section h2 {
+            font-size: clamp(38px, 5vw, 60px);
+            line-height: .95;
+            letter-spacing: -3px;
+        }
+
+        .section-link {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .episodes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .episode-card {
+            background: var(--papel);
+            border: 1px solid var(--borda);
+            transition: .25s;
+        }
+
+        .episode-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 7px 7px 0 rgba(0,0,0,.08);
+        }
+
+        .episode-image {
+            aspect-ratio: 1 / .85;
+            display: grid;
+            place-items: center;
+            font-family: Arial, sans-serif;
+            font-size: 60px;
+            font-weight: 900;
+        }
+
+        .episode-card:nth-child(1) .episode-image {
+            background: #fff894;
+        }
+    
+
+        .episode-content {
+            padding: 22px;
+        }
+
+        .episode-number {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--cinza);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .episode-card h3 {
+            font-size: 23px;
+            line-height: 1.05;
+            margin-bottom: 18px;
+        }
+
+        .card-meta {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: var(--cinza);
+            margin-bottom: 18px;
+        }
+
+        .play {
+            border: 0;
+            background: transparent;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           TEMAS
+        ========================================================= */
+
+        .themes {
+            background: #e9e4d8;
+        }
+
+        .theme-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .theme {
+            padding: 13px 20px;
+            border: 1px solid #999;
+            border-radius: 100px;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            background: transparent;
+            transition: .2s;
+        }
+
+        .theme:hover {
+            background: var(--preto);
+            color: white;
+            border-color: var(--preto);
+        }
+
+
+        /* =========================================================
+           MANIFESTO
+        ========================================================= */
+
+        .manifesto {
+            background: var(--verde);
+            color: white;
+            padding: 110px 0;
+        }
+
+        .manifesto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .manifesto h2 {
+            font-size: clamp(45px, 6vw, 75px);
+            line-height: .9;
+            letter-spacing: -4px;
+            margin-bottom: 30px;
+        }
+
+        .manifesto p {
+            font-size: 19px;
+            color: #d9e2dd;
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        .quote {
+            font-size: clamp(30px, 4vw, 52px);
+            line-height: 1;
+            font-style: italic;
+            border-left: 5px solid var(--amarelo);
+            padding-left: 30px;
+        }
+
+
+        /* =========================================================
+           SOBRE
+        ========================================================= */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            min-height: 400px;
+            background:
+                linear-gradient(135deg, var(--amarelo) 0 25%, transparent 25%),
+                linear-gradient(45deg, var(--azul) 0 20%, transparent 20%),
+                #292929;
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 80px;
+        }
+
+        .about-text h2 {
+            font-size: clamp(42px, 5vw, 65px);
+            line-height: .95;
+            letter-spacing: -3px;
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+
+        /* =========================================================
+           PARTICIPE
+        ========================================================= */
+
+        .participate {
+            background: var(--papel);
+        }
+
+        .participate-grid {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 70px;
+        }
+
+        .participate h2 {
+            font-size: clamp(45px, 5vw, 70px);
+            line-height: .9;
+            letter-spacing: -4px;
+        }
+
+        .participate p {
+            margin-top: 20px;
+            color: var(--cinza);
+        }
+
+        .participate-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .participate-item {
+            min-height: 130px;
+            padding: 25px;
+            border: 1px solid var(--borda);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: .2s;
+        }
+
+        .participate-item:hover {
+            background: var(--amarelo);
+        }
+
+        .participate-item strong {
+            font-size: 20px;
+        }
+
+        .participate-item span {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+
+        /* =========================================================
+           NEWSLETTER
+        ========================================================= */
+
+        .newsletter {
+            background: var(--amarelo);
+            padding: 55px 0;
+        }
+
+        .newsletter-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .newsletter h2 {
+            font-size: 35px;
+            line-height: 1;
+        }
+
+        .newsletter p {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            min-width: 450px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            border: 1px solid var(--preto);
+            padding: 15px;
+            background: white;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            border: 1px solid var(--preto);
+            background: var(--preto);
+            color: white;
+            padding: 0 25px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+        /* =========================================================
+           RODAPÉ
+        ========================================================= */
+
+        footer {
+            background: var(--preto);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #444;
+        }
+
+        .footer-brand strong {
+            display: block;
+            font-size: 25px;
+        }
+
+        .footer-brand span {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #999;
+        }
+
+
+        /* =========================================================
+           PLAYER FIXO
+        ========================================================= */
+
+        .audio-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(23,23,23,.97);
+            color: white;
+            z-index: 2000;
+            transform: translateY(100%);
+            transition: .3s;
+        }
+
+        .audio-player.active {
+            transform: translateY(0);
+        }
+
+        .player-inner {
+            width: min(92%, var(--largura));
+            margin: auto;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .player-button {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 0;
+            background: var(--amarelo);
+            cursor: pointer;
+        }
+
+        .player-info {
+            flex: 1;
+        }
+
+        .player-info strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .player-info span {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        .close-player {
+            border: 0;
+            background: transparent;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+
+        /* JANELA DE VÍDEO: PODCAST E MAKING OF */
+        .video-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 5000;
+            background: rgba(0, 0, 0, .82);
+            padding: 24px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal.active { display: flex; }
+
+        .video-modal-box {
+            width: min(900px, 100%);
+            background: var(--papel);
+            color: var(--preto);
+            padding: 22px;
+            position: relative;
+            border: 1px solid var(--borda);
+        }
+
+        .video-modal-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .video-modal-heading h2 { font-size: clamp(22px, 4vw, 32px); }
+
+        .video-modal-close {
+            border: 0;
+            background: var(--preto);
+            color: white;
+            width: 40px;
+            height: 40px;
+            font-size: 26px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .video-modal video {
+            display: block;
+            width: 100%;
+            max-height: 70vh;
+            background: #000;
+        }
+
+        .video-help {
+            margin-top: 12px;
+            color: var(--cinza);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           RESPONSIVIDADE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 82px;
+                left: 0;
+                width: 100%;
+                padding: 25px;
+                background: var(--papel);
+                border-bottom: 1px solid var(--borda);
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav.open {
+                display: flex;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .hero,
+            .featured-grid,
+            .manifesto-grid,
+            .about,
+            .participate-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .episodes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .newsletter-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .newsletter-form {
+                min-width: 0;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .hero {
+                padding: 55px 0;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .episodes {
+                grid-template-columns: 1fr;
+            }
+
+            .participate-links {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                min-height: 50px;
+            }
+
+            .footer-top,
+            .footer-bottom {
+                flex-direction: column;
+            }
+
+            .episode-cover {
+                min-height: 280px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         CABEÇALHO
+    ========================================================= -->
+
+    <header>
+
+        <div class="container nav">
+
+            <a href="#" class="logo">
+
+                <div class="logo-icon">
+                    <img src="logoofc.png" alt="">
+                </div>
+
+                <div class="logo-text">
+                    <strong>MENTE DO ESTUDANTE</strong>
+                    <span>Uma conversa sobre a vida dos estudantes na escola e a influência da tecnologia digital no ambiente escolar</span>
+                </div>
+
+            </a>
+
+
+            <button class="menu-button" onclick="toggleMenu()">
+                ☰
+            </button>
+
+
+            <nav id="menu">
+
+                <a href="#inicio">Início</a>
+                <a href="#episodio-destaque">Episódios</a>
+                <a href="#ideias">Ideias</a>
+                <a href="#manifesto">Manifesto</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#participe">Participe</a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="container hero" id="inicio">
+
+            <div>
+
+                <div class="hero-label">
+                    Podcast • Escola • Tecnologia • Sociedade
+                </div>
+
+                <h1>
+                    O que acontece com a escola quando tudo vira
+                    <span>plataforma?</span>
+                </h1>
+
+                <p>
+                    Um desabafo de alunos que não são ouvidos
+                </p>
+
+                <div class="buttons">
+
+                    <button type="button" class="button" onclick="openVideo('Podcast', 'podcast.mp4')">
+                        ▶ Ver podcast
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-art">
+
+                <img src="logoofc.png" alt="">
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             EPISÓDIO EM DESTAQUE
+        ====================================================== -->
+
+        <section class="featured" id="episodio-destaque">
+
+            <div class="container featured-grid">
+
+                <div>
+
+                    <div class="eyebrow">
+                        Episódio em destaque
+                    </div>
+
+                    <h2>
+                        #1 — Plataformas, dados e o futuro da escola
+                    </h2>
+
+                    <p>
+                        Neste episódio, discutimos como as plataformas
+                        passaram a organizar o cotidiano escolar e o que isso
+                        significa para a autonomia de estudantes e
+                        professores.
+                    </p>
+
+                    <div class="episode-info">
+                        <span>◷ 58 minutos</span>
+                        <span>● 12 abril 2025</span>
+                        <span>● Conversa</span>
+                    </div>
+
+                    <button
+                        class="button"
+                        type="button"
+                        onclick="openVideo('Podcast — Plataformas, dados e o futuro da escola', 'podcast.mp4')"
+                    >
+                        ▶ Ver podcast
+                    </button>
+
+                </div>
+
+
+                <div class="episode-cover">
+
+                    <span>#1</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             EPISÓDIOS
+        ====================================================== -->
+
+        <section class="section" id="episodios">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2>
+                        Making of<br>
+                    </h2>
+
+                    <a href="#" class="section-link">
+                        Ver todos os episódios →
+                    </a>
+
+                </div>
+
+
+                <div class="episodes">
+
+                    <article class="episode-card">
+
+                        <div class="episode-image">
+                            #1
+                        </div>
+
+                        <div class="episode-content">
+
+                            <div class="episode-number">
+                                Extra
+                            </div>
+
+                            <h3>
+                                Processo de gravação e equipe por trás das câmeras
+                            </h3>
+
+                            <div class="card-meta">
+                                14 setembro 2026 · 46 min
+                            </div>
+
+                            <button
+                                class="play"
+                                type="button"
+                                onclick="openVideo('Making of — Processo de gravação', 'makingof.mp4')"
+                            >
+                                ▶ VER MAKING OF
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             TEMAS
+        ====================================================== -->
+
+        <section class="section themes" id="ideias">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <h2>
+                        Temas em<br>
+                        discussão
+                    </h2>
+
+                    <a href="#" class="section-link">
+                        Ver todos →
+                    </a>
+
+                </div>
+
+
+                <div class="theme-list">
+
+                    <a href="#" class="theme">Plataformização</a>
+                    <a href="#" class="theme">Escola</a>
+                    <a href="#" class="theme">Gestão escolar</a>
+                    <a href="#" class="theme">Inteligência artificial</a>
+                    <a href="#" class="theme">Autonomia</a>
+                    <a href="#" class="theme">Cobranças</a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             MANIFESTO
+        ====================================================== -->
+
+        <section class="manifesto" id="manifesto">
+
+            <div class="container manifesto-grid">
+
+                <div>
+
+                    <div class="eyebrow">
+                        Nosso manifesto
+                    </div>
+
+                    <h2>
+                        O que é
+                        antiplataformização?
+                    </h2>
+
+                    <p>
+                        Antiplataformização não significa simplesmente
+                        ser contra a tecnologia. Significa perguntar
+                        quando, como e por que plataformas passam a
+                        organizar o currículo, o trabalho docente,
+                        os dados, a avaliação e a própria experiência
+                        escolar.
+                    </p>
+
+                    <a href="#" class="button">
+                        Ler manifesto →
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <div class="quote">
+                        “A escola não é um produto.
+                        É um território de encontros,
+                        conflitos, desejos e invenções.”
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             SOBRE
+        ====================================================== -->
+
+        <section class="section" id="sobre">
+
+            <div class="container about">
+
+                <div class="about-text">
+
+                    <div class="eyebrow">
+                        Sobre o podcast
+                    </div>
+
+                    <h2>
+                        Pensar a escola
+                        para além da plataforma.
+                    </h2>
+
+                    <p>
+                        Somos um grupo de professores, pesquisadores,
+                        estudantes e pessoas da escola que acreditam
+                        no poder da escuta, da conversa e da reflexão
+                        coletiva e humana.
+                    </p>
+
+                    <p>
+                        O podcast nasceu para criar um espaço de debate
+                        crítico sobre educação e seus atravessamentos
+                        com tecnologia e experiência escolar.
+                    </p>
+
+                    <a href="#" class="button">
+                        Conheça o projeto →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             PARTICIPE
+        ====================================================== -->
+
+        <section class="section participate" id="participe">
+
+            <div class="container participate-grid">
+
+                <div>
+
+                    <div class="eyebrow">
+                        Faça parte
+                    </div>
+
+                    <h2>
+                        A escola também
+                        fala.
+                    </h2>
+
+                    <p>
+                        Quer participar da conversa?
+                        Envie perguntas, relatos, pesquisas ou
+                        sugestões para os próximos episódios.
+                    </p>
+
+                </div>
+
+
+                <div class="participate-links">
+
+                    <a href="#" class="participate-item">
+
+                        <strong>
+                            Envie uma pergunta
+                        </strong>
+
+                        <span>
+                            Para o próximo episódio →
+                        </span>
+
+                    </a>
+
+
+                    <a href="#" class="participate-item">
+
+                        <strong>
+                            Sugira um tema
+                        </strong>
+
+                        <span>
+                            Para o podcast →
+                        </span>
+
+                    </a>
+
+
+                    <a href="#" class="participate-item">
+
+                        <strong>
+                            Indique uma pesquisa
+                        </strong>
+
+                        <span>
+                            Artigo ou livro →
+                        </span>
+
+                    </a>
+
+
+                    <a href="#" class="participate-item">
+
+                        <strong>
+                            Envie um relato
+                        </strong>
+
+                        <span>
+                            De sua escola →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             NEWSLETTER
+        ====================================================== -->
+
+        <section class="newsletter">
+
+            <div class="container newsletter-content">
+
+                <div>
+
+                    <h2>
+                        Assine nossa newsletter.
+                    </h2>
+
+                    <p>
+                        Receba novos episódios, textos e referências.
+                    </p>
+
+                </div>
+
+
+                <form
+                    class="newsletter-form"
+                    onsubmit="subscribe(event)"
+                >
+
+                    <input
+                        type="email"
+                        placeholder="Seu e-mail"
+                        required
+                    >
+
+                    <button type="submit">
+                        INSCREVER
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         RODAPÉ
+    ========================================================= -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-top">
+
+                <div class="footer-brand">
+
+                    <strong>
+                        MENTE DO ESTUDANTE
+                    </strong>
+
+                    <span>
+                        Podcast sobre escola
+                    </span>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <a href="#inicio">Início</a>
+                    <a href="#episodios">Episódios</a>
+                    <a href="#ideias">Ideias</a>
+                    <a href="#manifesto">Manifesto</a>
+                    <a href="#sobre">Sobre</a>
+                    <a href="#participe">Participe</a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 Fora da Plataforma.
+                </span>
+
+                <span>
+                    Um projeto independente sobre educação e tecnologia.
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         PLAYER
+    ========================================================= -->
+
+    <div class="audio-player" id="audioPlayer">
+
+        <div class="player-inner">
+
+            <button
+                class="player-button"
+                onclick="togglePlay()"
+                id="playButton"
+            >
+                ▶
+            </button>
+
+            <div class="player-info">
+
+                <strong id="playerTitle">
+                    Episódio
+                </strong>
+
+                <span>
+                    Fora da Plataforma
+                </span>
+
+            </div>
+
+            <button
+                class="close-player"
+                onclick="closePlayer()"
+            >
+                ×
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JANELA PARA REPRODUZIR O PODCAST OU O MAKING OF -->
+    <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle" onclick="closeVideoOnBackdrop(event)">
+        <div class="video-modal-box">
+            <div class="video-modal-heading">
+                <h2 id="videoModalTitle">Vídeo</h2>
+                <button type="button" class="video-modal-close" aria-label="Fechar vídeo" onclick="closeVideo()">×</button>
+            </div>
+            <video id="siteVideo" controls playsinline preload="metadata">
+                Seu navegador não consegue reproduzir este vídeo.
+            </video>
+            <p class="video-help" id="videoHelp">Quando o arquivo estiver pronto, coloque-o na mesma pasta deste site com o nome indicado no código.</p>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* MENU MOBILE */
+
+        function toggleMenu() {
+
+            const menu = document.getElementById("menu");
+
+            menu.classList.toggle("open");
+
+        }
+
+
+        /* PLAYER */
+
+        let playing = false;
+
+        function openPlayer(title) {
+
+            const player = document.getElementById("audioPlayer");
+            const playerTitle = document.getElementById("playerTitle");
+
+            playerTitle.textContent = title;
+
+            player.classList.add("active");
+
+            playing = false;
+
+            document.getElementById("playButton").textContent = "▶";
+
+        }
+
+
+        function closePlayer() {
+
+            document
+                .getElementById("audioPlayer")
+                .classList.remove("active");
+
+        }
+
+
+        function togglePlay() {
+
+            const button = document.getElementById("playButton");
+
+            playing = !playing;
+
+            button.textContent = playing ? "Ⅱ" : "▶";
+
+            /*
+                AQUI VOCÊ PODE COLOCAR O ÁUDIO REAL.
+
+                Exemplo:
+
+                const audio = new Audio("episodio-12.mp3");
+
+                audio.play();
+
+                Depois, você pode transformar este botão
+                em um player completo.
+            */
+
+        }
+
+
+        /* JANELA DE VÍDEO */
+        function openVideo(title, fileName) {
+            const modal = document.getElementById("videoModal");
+            const video = document.getElementById("siteVideo");
+            const help = document.getElementById("videoHelp");
+
+            document.getElementById("videoModalTitle").textContent = title;
+            video.pause();
+            video.removeAttribute("src");
+            video.load();
+            video.src = fileName;
+            help.textContent = "podcastyes.mp4" + "";
+            video.onerror = function () {
+                help.textContent = "Não foi possível carregar " + fileName + ". Quando você tiver o vídeo, coloque o arquivo na mesma pasta do site ou ajuste o caminho no código.";
+            };
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById("videoModal");
+            const video = document.getElementById("siteVideo");
+            video.pause();
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        function closeVideoOnBackdrop(event) {
+            if (event.target === document.getElementById("videoModal")) closeVideo();
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") closeVideo();
+        });
+
+
+        /* NEWSLETTER */
+
+        function subscribe(event) {
+
+            event.preventDefault();
+
+            const email = event.target
+                .querySelector("input")
+                .value;
+
+            alert(
+                "Obrigado! O e-mail " +
+                email +
+                " foi cadastrado."
+            );
+
+            event.target.reset();
+
+        }
+
+
+        /* FECHAR MENU AO CLICAR EM UM LINK */
+
+        document
+            .querySelectorAll("nav a")
+            .forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    document
+                        .getElementById("menu")
+                        .classList.remove("open");
+
+                });
+
+            });
+
+    </script>
+
+</body>
+</html>
